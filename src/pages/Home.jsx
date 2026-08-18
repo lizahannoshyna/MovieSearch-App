@@ -24,10 +24,11 @@ export const Home = () => {
 
   return (
     <>
-      <h1>Trending today</h1>
+      <h1 className="text-center text-xl
+">Trending today</h1>
       <ul>
         {movies.map((movie) => (
-          <li key={movie.id}>
+          <li className="" key={movie.id}>
             <Link to={`/movies/${movie.id}`}>{movie.title || movie.name}</Link>
           </li>
         ))}

@@ -4,7 +4,7 @@ import css from "./Footer.module.css";
 const Footer = () => {
     return(
         <footer>
-                <p>&copy; 2024 React Router Example. All rights reserved.</p>
+                <p className="text-[#39273f]">&copy; 2024 React Router Example. All rights reserved.</p>
             </footer>
     )
 }

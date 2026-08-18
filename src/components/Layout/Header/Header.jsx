@@ -1,20 +1,24 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import css from "./Header.module.css";
 
 const Header = () => {
+    const getLinkClass = ({ isActive }) => 
+        `text-[#39273f] font-medium transition-colors hover:text-[#7ea928] ${
+            isActive ? "text-[#7ea928] underline" : ""
+        }`;
+
     return (
-        <section className="header">
-            <nav>
-                <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+        <section className="py-4 px-8 shadow-sm">
+            <nav className="flex gap-6">
+                <NavLink to="/" className={getLinkClass}>
                     Home
                 </NavLink>
-                <NavLink to="/movies" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                <NavLink to="/movies" className={getLinkClass}>
                     Movies
                 </NavLink>
             </nav>
         </section>
-    )
-}
+    );
+};
 
 export default Header;

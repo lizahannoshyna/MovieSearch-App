@@ -1,14 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useSearchParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
 export const Movies = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [movies, setMovies] = useState([]);
+    const location = useLocation();
 
     const query = searchParams.get('query') || '';
-
     const [inputValue, setInputValue] = useState(query);
 
     const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -65,7 +65,7 @@ export const Movies = () => {
         <ul>
           {movies.map(({ id, title }) => (
             <li key={id} style={{ marginBottom: "8px" }}>
-              <Link to={`/movies/${id}`}>{title}</Link>
+              <Link to={`/movies/${id}`} state={{from: location}}>{title}</Link>
             </li>
           ))}
         </ul>

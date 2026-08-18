@@ -1,12 +1,15 @@
 import React from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { useState, useEffect, useRef } from "react";
+import { Link, NavLink, Outlet, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export const MovieDetails = () => {
     const {movieID} = useParams();
-
-    const [movie, setMovie] = useState(null); 
+    const [movie, setMovie] = useState(null);
+    const location = useLocation(); // поточний момент знаходження
+    const backLink = useRef(location.state?.from ?? '/movies')
+     
     const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
   useEffect(() => {
@@ -31,7 +34,7 @@ export const MovieDetails = () => {
 
     return(
         <>
-        <Link to='/movies'>Go back</Link>
+        <Link to={backLink.current}>Go back</Link>
         <div>
         <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
         <img 
@@ -49,7 +52,7 @@ export const MovieDetails = () => {
       </div>
       <hr />
       <nav>
-         <Link to="cast">Cast</Link> | <Link to="reviews">Reviews</Link>
+         <NavLink to="cast">Cast</NavLink> | <NavLink to="reviews">Reviews</NavLink>
       </nav>
       <Outlet /> 
     </div>
